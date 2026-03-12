@@ -12,7 +12,7 @@
 
     "age": {
       "type": "integer",
-      "minimum": 18,
+      "minimum": 30,
       "maximum": 50
     },
 
@@ -61,3 +61,4 @@
   }
 
 }
+
