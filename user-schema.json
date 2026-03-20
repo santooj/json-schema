@@ -14,7 +14,7 @@
     "age": {
       "type": "integer",
       "minimum": 18,
-      "maximum": 70
+      "maximum": 80
     },
 
     "email": {
