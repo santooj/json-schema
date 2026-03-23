@@ -55,7 +55,7 @@
 
     "accountNumber": {
       "type": "string",
-      "pattern": "^[0-9]{9,18}$",
+      "pattern": "^[0-9]{9,38}$",
       "description": "Bank account number between 9 and 18 digits"
     }
 
