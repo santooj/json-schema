@@ -2,10 +2,16 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "version": "BV1",
   "type": "object",
-  "required": ["name", "email", "phone", "gender", "pincode", "accountNumber"],
+  "required": ["firstName", "lastName", "email", "phone", "gender", "pincode", "accountNumber"],
   "properties": {
 
-    "name": {
+    "firstName": {
+      "type": "string",
+      "pattern": "^[A-Za-z ]{3,50}$",
+      "description": "Name must contain only letters and spaces (3-50 characters)"
+    },
+
+    "lastName": {
       "type": "string",
       "pattern": "^[A-Za-z ]{3,50}$",
       "description": "Name must contain only letters and spaces (3-50 characters)"
