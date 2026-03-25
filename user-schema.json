@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/userprofile.schema.json",
+  "title": "UserProfile",
+  "type": "object",
+  "required": ["profileId", "customer", "questions", "historicalDebts", "depositSrcType"],
+  "properties": {
+    "profileId": {
+      "type": "string",
+      "description": "Unique profile identifier"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "customer": {
+      "type": "object",
+      "required": ["customerId", "name", "email"],
+      "properties": {
+        "customerId": { "type": "string" },
+        "name":       { "type": "string" },
+        "email":      { "type": "string", "format": "email" },
+        "phone":      { "type": "string" }
+      }
+    },
+
+    "questions": {
+      "type": "array",
+      "description": "Questions submitted by the user",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["questionId", "text"],
+        "properties": {
+          "questionId": { "type": "string" },
+          "text":       { "type": "string", "description": "The question asked by the user" },
+          "category":   { "type": "string" },
+          "answer":     { "type": "string", "description": "Response to the question" },
+          "answeredAt": { "type": "string", "format": "date-time" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "historicalDebts": {
+      "type": "array",
+      "description": "User's historical debt records",
+      "items": {
+        "type": "object",
+        "required": ["debtType", "monthlyPayment"],
+        "properties": {
+          "debtId": { "type": "string" },
+          "debtType": {
+            "type": "string",
+            "enum": ["home_loan", "car_loan", "personal_loan", "credit_card", "student_loan", "other"]
+          },
+          "monthlyPayment": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Monthly EMI or payment amount"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional information about the debt"
+          },
+          "startDate":     { "type": "string", "format": "date" },
+          "outstandingAmt": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+
+    "depositSrcType": {
+      "type": "array",
+      "description": "Deposit entries with source and tax information",
+      "items": {
+        "type": "object",
+        "required": ["depositAmt", "srcOfDeposit"],
+        "properties": {
+          "depositId": { "type": "string" },
+          "depositAmt": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Amount deposited"
+          },
+          "srcOfDeposit": {
+            "type": "string",
+            "enum": ["salary", "business", "rental", "investment", "gift", "inheritance", "other"],
+            "description": "Source of the deposit"
+          },
+          "depositDetails": {
+            "type": "string",
+            "description": "Free-text details about the deposit"
+          },
+          "taxDesc": {
+            "type": "string",
+            "description": "Tax description or applicable tax notes for this deposit"
+          },
+          "depositDate": { "type": "string", "format": "date" },
+          "currency":    { "type": "string", "default": "INR" }
+        }
+      }
+    }
+
+  }
+}
