@@ -65,7 +65,8 @@
           },
           "details": {
             "type": "string",
-            "description": "Additional information about the debt"
+            "description": "Additional information about the debt",
+            "pattern": "^[^#%]*$"
           },
           "startDate":     { "type": "string", "format": "date" },
           "outstandingAmt": { "type": "number", "minimum": 0 }
